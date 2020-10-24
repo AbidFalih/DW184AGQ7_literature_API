@@ -9,7 +9,10 @@ const app = express();
 const router = require("./src/routers/router"); //import router
 
 app.use(express.json()); //body parser JSON
-app.use(cors());
+app.use(cors()); //cors
+//create static folder for handle uploaded item
+app.use("/src/uploads/images", express.static("src/uploads/images"));
+app.use("/src/uploads/literatures", express.static("src/uploads/literatures"));
 
 app.use("/api/v1/", router); //grouping
 

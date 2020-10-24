@@ -9,6 +9,7 @@ const {
   deleteUser,
   detailUser,
   editUser,
+  updateProfilePhoto,
 } = require("../controllers/user");
 
 const {
@@ -28,6 +29,7 @@ const {
 } = require("../controllers/collection");
 
 const { auth } = require("../middlewares/middleware");
+const { uploadImage, uploadLiterature } = require("../middlewares/upload");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -38,6 +40,7 @@ router.get("/users", readUser);
 router.get("/user/:id", detailUser);
 router.patch("/user/:id", auth, editUser);
 router.delete("/user/:id", auth, deleteUser);
+router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
 
 router.get("/literatures", readLiterature);
 router.get("/literature/:id", detailLiterature);

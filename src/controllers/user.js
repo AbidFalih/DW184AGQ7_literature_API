@@ -70,3 +70,27 @@ exports.deleteUser = async (req, res) => {
     showError(err);
   }
 };
+
+exports.updateProfilePhoto = async (req, res) => {
+  try {
+    const { id } = req.user;
+    await User.update(
+      {
+        thumb: req.file.filename,
+      },
+      { where: { id } }
+    );
+
+    const user = await User.findOne({
+      where: { id },
+      attributes: { exclude: ["createdAt", "updatedAt", "password"] },
+    });
+
+    res.send({
+      message: "Successfully update user's profile photo",
+      user,
+    });
+  } catch (err) {
+    showError(err);
+  }
+};
