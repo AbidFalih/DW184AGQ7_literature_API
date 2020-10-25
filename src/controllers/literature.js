@@ -48,8 +48,23 @@ exports.detailLiterature = async (req, res) => {
 };
 
 exports.createLiterature = async (req, res) => {
+  const { id } = req.user;
   try {
-    const addLiterature = await Literature.create(req.body);
+    const { title, publication_date, pages, isbn, author } = req.body;
+    const thumb = req.files["thumb"][0].filename;
+    const attache = req.files["attache"][0].filename;
+    // const coba = req.files;
+
+    const addLiterature = await Literature.create({
+      title,
+      publication_date,
+      pages,
+      isbn,
+      author,
+      userId: id,
+      thumb,
+      attache,
+    });
 
     const detailLiterature = await Literature.findOne({
       where: { id: addLiterature.id },
@@ -66,6 +81,8 @@ exports.createLiterature = async (req, res) => {
     res.send({
       message: "Successfully added a literature",
       addLiterature: detailLiterature,
+      // coba,
+      // thumb,
     });
   } catch (err) {
     showError(err);

@@ -55,7 +55,7 @@ exports.uploadImage = (fileName) => {
 exports.uploadLiterature = () => {
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      file.fieldname === "thumbnail"
+      file.fieldname == "thumb"
         ? cb(null, "src/uploads/images")
         : cb(null, "src/uploads/literatures");
     },
@@ -66,7 +66,7 @@ exports.uploadLiterature = () => {
 
   var literatureUpload = multer({
     storage: storage,
-  }).fields([{ name: "thumbnail" }, { name: "attache" }]);
+  }).fields([{ name: "thumb" }, { name: "attache" }]);
 
   return (req, res, next) => {
     literatureUpload(req, res, function (err) {

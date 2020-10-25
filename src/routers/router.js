@@ -44,7 +44,7 @@ router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
 
 router.get("/literatures", readLiterature);
 router.get("/literature/:id", detailLiterature);
-router.post("/literature", auth, createLiterature);
+router.post("/literature", uploadLiterature(), auth, createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);
 router.delete("/literature/:id", auth, deleteLiterature);
 
