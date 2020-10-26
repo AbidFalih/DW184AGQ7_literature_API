@@ -14,6 +14,7 @@ const {
 
 const {
   readLiterature,
+  readLiteratureSearch,
   detailLiterature,
   createLiterature,
   updateLiterature,
@@ -43,6 +44,7 @@ router.delete("/user/:id", auth, deleteUser);
 router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
 
 router.get("/literatures", readLiterature);
+router.get("/literature", readLiteratureSearch);
 router.get("/literature/:id", detailLiterature);
 router.post("/literature", uploadLiterature(), auth, createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);

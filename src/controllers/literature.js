@@ -1,6 +1,9 @@
 const { Literature, User } = require("../../models");
 const { showError } = require("./_showError");
 
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 exports.readLiterature = async (_, res) => {
   try {
     const literatures = await Literature.findAll({
@@ -18,6 +21,69 @@ exports.readLiterature = async (_, res) => {
       message: "Successfully get all literatures",
       literatures,
     });
+  } catch (err) {
+    showError(err);
+  }
+};
+
+exports.readLiteratureSearch = async (req, res) => {
+  let title = req.query.title;
+  let public_year = req.query.public_year;
+  try {
+    if (public_year) {
+      const literature = await Literature.findAll({
+        include: [
+          {
+            model: User,
+            as: "user",
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+        attributes: {
+          exclude: ["UserId", "createdAt", "updatedAt"],
+        },
+        where: {
+          title: {
+            [Op.like]: "%" + title + "%",
+          },
+          publication_date: {
+            [Op.lte]: public_year + "-12-31",
+          },
+        },
+        order: [["publication_date", "DESC"]],
+      });
+      res.send({
+        message: `Success load title ${title} and date ${public_year} from literatures`,
+        literature,
+      });
+    } else {
+      const literature = await Literature.findAll({
+        include: [
+          {
+            model: User,
+            as: "user",
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+        attributes: {
+          exclude: ["UserId", "createdAt", "updatedAt"],
+        },
+        where: {
+          title: {
+            [Op.like]: "%" + title + "%",
+          },
+        },
+        // order: [["id", "DESC"]],
+      });
+      res.send({
+        message: `Success load title ${title} from literatures`,
+        literature,
+      });
+    }
   } catch (err) {
     showError(err);
   }
