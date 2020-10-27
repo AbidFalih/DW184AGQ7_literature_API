@@ -37,7 +37,7 @@ exports.readLiteratureSearch = async (req, res) => {
             model: User,
             as: "user",
             attributes: {
-              exclude: ["createdAt", "updatedAt"],
+              exclude: ["password", "createdAt", "updatedAt"],
             },
           },
         ],
@@ -49,7 +49,7 @@ exports.readLiteratureSearch = async (req, res) => {
             [Op.like]: "%" + title + "%",
           },
           publication_date: {
-            [Op.lte]: public_year + "-12-31",
+            [Op.gte]: public_year + "-1-1",
           },
         },
         order: [["publication_date", "DESC"]],
