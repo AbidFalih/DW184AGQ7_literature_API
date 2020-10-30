@@ -12,12 +12,16 @@ module.exports = (sequelize, DataTypes) => {
         as: "literatures",
       });
 
-      User.belongsToMany(models.Literature, {
-        as: "userLiteratures",
-        through: {
-          model: "Collections",
-          as: "collection",
-        },
+      // User.belongsToMany(models.Literature, {
+      //   as: "userLiteratures",
+      //   through: {
+      //     model: "Collections",
+      //     as: "collection",
+      //   },
+      // });
+
+      User.hasMany(models.Collection, {
+        as: "collections",
       });
     }
   }

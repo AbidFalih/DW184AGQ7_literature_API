@@ -1,28 +1,52 @@
 const { showError } = require("./_showError");
 const { Collection, User, Literature } = require("../../models");
 
+// exports.readDetailCollectionsUser = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const collectionsUser = await User.findOne({
+//       where: { id },
+//       include: {
+//         model: Literature,
+//         as: "userLiteratures",
+//         through: {
+//           model: Collection,
+//           as: "collection",
+//           attributes: { exclude: ["createdAt", "updatedAt"] },
+//         },
+//         attributes: {
+//           exclude: ["UserId", "createdAt", "updatedAt"],
+//         },
+//       },
+//       attributes: ["id"],
+//     });
+
+//     res.send({
+//       message: "Successfully get User-Literatures through Collection",
+//       collectionsUser,
+//     });
+//   } catch (err) {
+//     showError(err);
+//   }
+// };
+
 exports.readDetailCollectionsUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const collectionsUser = await User.findOne({
-      where: { id },
+    const collectionsUser = await Collection.findAll({
+      where: { userId: id },
       include: {
         model: Literature,
-        as: "userLiteratures",
-        through: {
-          model: Collection,
-          as: "collection",
-          attributes: { exclude: ["createdAt", "updatedAt"] },
-        },
+        as: "literature",
         attributes: {
           exclude: ["UserId", "createdAt", "updatedAt"],
         },
       },
-      attributes: ["id"],
+      attributes: ["id", "userId"],
     });
 
     res.send({
-      message: "Successfully get User-Literatures through Collection",
+      message: `Successfully get Literatures based on User id ${id}`,
       collectionsUser,
     });
   } catch (err) {
