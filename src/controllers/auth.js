@@ -35,6 +35,7 @@ exports.register = async (req, res) => {
       gender: Joi.bool(),
       phone: Joi.string().min(8).required(),
       address: Joi.string().min(8).required(),
+      thumb: Joi.string(),
     });
 
     const { error } = schema.validate(req.body);
