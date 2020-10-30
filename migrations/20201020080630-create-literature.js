@@ -22,7 +22,7 @@ module.exports = {
         onDelete: "CASCADE",
       },
       publication_date: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATEONLY,
       },
       pages: {
         type: Sequelize.INTEGER,
