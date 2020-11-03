@@ -30,7 +30,11 @@ const {
 } = require("../controllers/collection");
 
 const { auth } = require("../middlewares/middleware");
-const { uploadImage, uploadLiterature } = require("../middlewares/upload");
+const {
+  uploadImage,
+  uploadLiterature,
+  uploadCloudinary,
+} = require("../middlewares/upload");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -46,7 +50,8 @@ router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
 router.get("/literatures", readLiterature);
 router.get("/literature", readLiteratureSearch);
 router.get("/literature/:id", detailLiterature);
-router.post("/literature", uploadLiterature(), auth, createLiterature);
+router.post("/literature", uploadCloudinary(), auth, createLiterature);
+// router.post("/literature", uploadLiterature(), auth, createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);
 router.delete("/literature/:id", auth, deleteLiterature);
 
