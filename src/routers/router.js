@@ -32,9 +32,9 @@ const {
 
 const { auth } = require("../middlewares/middleware");
 const {
-  uploadImage,
+  // uploadImage,
   // uploadLiterature,
-  uploadCloudinary,
+  // uploadCloudinary,
 } = require("../middlewares/upload");
 
 const { cloudUpload } = require("../middlewares/cloudinaryUpload");
@@ -48,15 +48,16 @@ router.get("/users", readUser);
 router.get("/user/:id", detailUser);
 router.patch("/user/:id", auth, editUser);
 router.delete("/user/:id", auth, deleteUser);
-router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
+// router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
+router.patch("/update-photo", auth, cloudUpload("thumb"), updateProfilePhoto);
 
 router.get("/literatures", readLiterature);
 router.get("/literature", readLiteratureSearch);
 router.get("/literature/:id", detailLiterature);
 router.get("/detailUserLiterature/:id", getLiteratureByUserId);
-router.post("/literature", uploadCloudinary(), auth, createLiterature);
+// router.post("/literature", uploadCloudinary(), auth, createLiterature);
 // router.post("/literature", uploadLiterature(), auth, createLiterature);
-// router.post("/literature", auth, cloudUpload("file"), createLiterature);
+router.post("/literature", auth, cloudUpload("file"), createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);
 router.delete("/literature/:id", auth, deleteLiterature);
 
