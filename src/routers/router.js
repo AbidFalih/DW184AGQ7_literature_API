@@ -37,6 +37,8 @@ const {
   // uploadCloudinary,
 } = require("../middlewares/upload");
 
+const { cloudUpload } = require("../middlewares/cloudinaryUpload");
+
 router.post("/register", register);
 router.post("/login", login);
 router.get("/auth", auth, checkAuth);
@@ -53,7 +55,8 @@ router.get("/literature", readLiteratureSearch);
 router.get("/literature/:id", detailLiterature);
 router.get("/detailUserLiterature/:id", getLiteratureByUserId);
 // router.post("/literature", uploadCloudinary(), auth, createLiterature);
-router.post("/literature", uploadLiterature(), auth, createLiterature);
+// router.post("/literature", uploadLiterature(), auth, createLiterature);
+router.post("/literature", auth, cloudUpload("file"), createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);
 router.delete("/literature/:id", auth, deleteLiterature);
 
