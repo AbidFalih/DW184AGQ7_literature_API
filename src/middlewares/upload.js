@@ -75,50 +75,50 @@ exports.uploadLiterature = () => {
   };
 };
 
-// const cloudinary = require("cloudinary");
-// const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-// exports.uploadCloudinary = () => {
-//   cloudinary.config({
-//     cloud_name: "macloudd",
-//     api_key: "386332127587441",
-//     api_secret: "BFzTM0g8WwY0huJprfKcExm2ZOU",
-//   });
+exports.uploadCloudinary = () => {
+  cloudinary.config({
+    cloud_name: "macloudd",
+    api_key: "386332127587441",
+    api_secret: "BFzTM0g8WwY0huJprfKcExm2ZOU",
+  });
 
-//   console.log("hai");
+  console.log("hai");
 
-//   var parser = multer({
-//     storage: new CloudinaryStorage({
-//       cloudinary: cloudinary,
-//       params: (req, file) => {
-//         return {
-//           folder: "assetsLiterature",
-//           public_id: Date.now() + "-" + file.originalname,
-//         };
-//       },
-//       //-- params: {
-//       //   folder: "assetsLiterature",
-//       //   // public_id: (req, file) => ""
-//       //   filename: function (req, file, cb) {
-//       //     cb(null, Date.now() + "-" + file.originalname);
-//       //   },
-//       //-- },
-//     }),
-//   }).fields([{ name: "thumb" }, { name: "attache" }]);
+  var parser = multer({
+    storage: new CloudinaryStorage({
+      cloudinary: cloudinary,
+      params: (req, file) => {
+        return {
+          folder: "assetsLiterature",
+          public_id: Date.now() + "-" + file.originalname,
+        };
+      },
+      //-- params: {
+      //   folder: "assetsLiterature",
+      //   // public_id: (req, file) => ""
+      //   filename: function (req, file, cb) {
+      //     cb(null, Date.now() + "-" + file.originalname);
+      //   },
+      //-- },
+    }),
+  }).fields([{ name: "thumb" }, { name: "attache" }]);
 
-//   console.log("Sampai tengah");
+  console.log("Sampai tengah");
 
-//   return (req, res, next) => {
-//     parser(req, res, function (err) {
-//       //-- var files = req.files;
-//       // if (files) {
-//       //   files.forEach(function (file) {
-//       //     cloudinary.uploader.upload(file.path, function (result) {
-//       //       console.log(result);
-//       //     });
-//       //   });
-//       //-- }
-//       return next();
-//     });
-//   };
-// };
+  return (req, res, next) => {
+    parser(req, res, function (err) {
+      //-- var files = req.files;
+      // if (files) {
+      //   files.forEach(function (file) {
+      //     cloudinary.uploader.upload(file.path, function (result) {
+      //       console.log(result);
+      //     });
+      //   });
+      //-- }
+      return next();
+    });
+  };
+};
