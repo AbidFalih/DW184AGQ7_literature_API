@@ -96,13 +96,13 @@ exports.uploadCloudinary = () => {
           public_id: Date.now() + "-" + file.originalname,
         };
       },
-      // params: {
+      //-- params: {
       //   folder: "assetsLiterature",
       //   // public_id: (req, file) => ""
       //   filename: function (req, file, cb) {
       //     cb(null, Date.now() + "-" + file.originalname);
       //   },
-      // },
+      //-- },
     }),
   }).fields([{ name: "thumb" }, { name: "attache" }]);
 
@@ -110,14 +110,14 @@ exports.uploadCloudinary = () => {
 
   return (req, res, next) => {
     parser(req, res, function (err) {
-      // var files = req.files;
+      //-- var files = req.files;
       // if (files) {
       //   files.forEach(function (file) {
       //     cloudinary.uploader.upload(file.path, function (result) {
       //       console.log(result);
       //     });
       //   });
-      // }
+      //-- }
       return next();
     });
   };
