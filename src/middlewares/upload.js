@@ -76,16 +76,10 @@ exports.uploadLiterature = () => {
   };
 };
 
-const cloudinary = require("cloudinary");
+const { cloudinary } = require("../../config/cloudinary");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 exports.uploadCloudinary = () => {
-  cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET,
-  });
-
   console.log("hai");
 
   var parser = multer({
@@ -110,7 +104,7 @@ exports.uploadCloudinary = () => {
   console.log("Sampai tengah");
 
   return (req, res, next) => {
-    parser(req, res, function (err) {
+    parser(req, res, (err) => {
       //-- var files = req.files;
       // if (files) {
       //   files.forEach(function (file) {
@@ -119,6 +113,7 @@ exports.uploadCloudinary = () => {
       //     });
       //   });
       //-- }
+      if (err) return res.send(err);
       return next();
     });
   };
