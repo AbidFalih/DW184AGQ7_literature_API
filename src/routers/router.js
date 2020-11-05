@@ -19,6 +19,7 @@ const {
   createLiterature,
   updateLiterature,
   deleteLiterature,
+  getLiteratureByUserId,
 } = require("../controllers/literature");
 
 const {
@@ -50,6 +51,7 @@ router.patch("/update-photo", uploadImage("thumb"), auth, updateProfilePhoto);
 router.get("/literatures", readLiterature);
 router.get("/literature", readLiteratureSearch);
 router.get("/literature/:id", detailLiterature);
+router.get("/detailUserLiterature/:id", getLiteratureByUserId);
 router.post("/literature", uploadCloudinary(), auth, createLiterature);
 // router.post("/literature", uploadLiterature(), auth, createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);

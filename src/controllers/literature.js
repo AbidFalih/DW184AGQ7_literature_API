@@ -26,6 +26,22 @@ exports.readLiterature = async (_, res) => {
   }
 };
 
+exports.getLiteratureByUserId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const literatureUser = await Literature.findAll({
+      where: { userId: id },
+    });
+
+    res.send({
+      message: `Successfully get data literature from user id ${id}`,
+      literatureUser,
+    });
+  } catch (err) {
+    showError(err);
+  }
+};
+
 exports.readLiteratureSearch = async (req, res) => {
   let title = req.query.title;
   let public_year = req.query.public_year;
