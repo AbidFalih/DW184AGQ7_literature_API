@@ -57,7 +57,7 @@ router.get("/literature/:id", detailLiterature);
 router.get("/detailUserLiterature/:id", getLiteratureByUserId);
 // router.post("/literature", auth, uploadCloudinary(), createLiterature);
 // router.post("/literature", uploadLiterature(), auth, createLiterature);
-router.post("/literature", auth, cloudUpload("file"), createLiterature);
+router.post("/literature", auth, cloudUpload("attache"), createLiterature);
 router.patch("/literature/:id", auth, updateLiterature);
 router.delete("/literature/:id", auth, deleteLiterature);
 

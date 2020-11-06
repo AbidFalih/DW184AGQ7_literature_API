@@ -15,7 +15,7 @@ exports.cloudUpload = (fieldName) => {
   });
 
   const fileFilter = (req, file, cb) => {
-    if (file.fieldname === "file") {
+    if (file.fieldname === "attache") {
       fileType = "pdf";
       limitSize = "5 MB";
     } else {
