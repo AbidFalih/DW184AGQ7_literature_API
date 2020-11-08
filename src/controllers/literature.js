@@ -132,8 +132,8 @@ exports.detailLiterature = async (req, res) => {
 exports.createLiterature = async (req, res) => {
   const { id } = req.user;
   try {
-    const { title, publication_date, pages, isbn, author } = req.body;
-    const thumb = req.files["thumb"][0].filename;
+    const { title, publication_date, pages, isbn, author, thumb } = req.body;
+    // const thumb = req.files["thumb"][0].filename;
     const attache = req.files["attache"][0].filename;
     // const coba = req.files;
 
