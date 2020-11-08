@@ -157,7 +157,7 @@ exports.createLiterature = async (req, res) => {
         attributes: { exclude: ["createdAt", "updatedAt"] },
       },
       attributes: {
-        exclude: ["userId", "UserId", "createdAt", "updatedAt"],
+        exclude: ["userId", "createdAt", "updatedAt"],
       },
     });
 
