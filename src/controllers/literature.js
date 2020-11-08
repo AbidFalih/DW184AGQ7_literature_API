@@ -135,7 +135,7 @@ exports.createLiterature = async (req, res) => {
     const { title, publication_date, pages, isbn, author, thumb } = req.body;
     // const thumb = req.files["thumb"][0].filename;
     // const attache = req.files["attache"][0].filename;
-    const attache = req.file.filename.split("/")[2];
+    const attache = req.file.filename;
     // const coba = req.files;
 
     const addLiterature = await Literature.create({
