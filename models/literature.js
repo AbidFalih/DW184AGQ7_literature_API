@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Literature.hasMany(models.Collection, {
         as: "collections",
+        foreignKey: "literatureId",
       });
     }
   }

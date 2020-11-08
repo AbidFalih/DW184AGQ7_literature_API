@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Collection, {
         as: "collections",
+        foreignKey: "userId",
       });
     }
   }
