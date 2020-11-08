@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Literature, {
         as: "literatures",
+        foreignKey: "userId",
       });
 
       // User.belongsToMany(models.Literature, {
