@@ -62,7 +62,7 @@ exports.readLiteratureSearch = async (req, res) => {
         },
         where: {
           title: {
-            [Op.like]: "%" + title + "%",
+            [Op.iLike]: `%${title}%`,
           },
           publication_date: {
             [Op.gte]: public_year + "-1-1",
@@ -90,7 +90,7 @@ exports.readLiteratureSearch = async (req, res) => {
         },
         where: {
           title: {
-            [Op.like]: "%" + title + "%",
+            [Op.iLike]: `%${title}%`,
           },
         },
         // order: [["id", "DESC"]],
