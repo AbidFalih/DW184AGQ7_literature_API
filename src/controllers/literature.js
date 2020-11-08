@@ -168,7 +168,11 @@ exports.createLiterature = async (req, res) => {
       // thumb,
     });
   } catch (err) {
-    showError(err);
+    console.log(err);
+
+    res.status(500).send({
+      message: "Server ERROR",
+    });
   }
 };
 
