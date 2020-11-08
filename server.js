@@ -15,6 +15,11 @@ app.use("/src/uploads/images", express.static("src/uploads/images"));
 app.use("/src/uploads/literatures", express.static("src/uploads/literatures"));
 
 app.use("/api/v1/", router); //grouping
+app.get("/", (req, res) => {
+  res.send(
+    "<p>Backend server has been successfully activated,<br> you can now login to the Literature web application, please go to <a href='http://ma-literature.netlify.com'>this link</a> :D </p>"
+  );
+});
 
 const port = process.env.PORT || 5000;
 
